@@ -103,7 +103,7 @@ export default function MoveDialog({ lang, open, onClose, selectedItems, onConfi
               <label className="block text-sm font-bold text-gray-900 dark:text-white">{t.newLocation}</label>
               <button 
                 onClick={() => { setShowQuickLoc(!showQuickLoc); setTimeout(() => document.getElementById('moveQuickLocInput')?.focus(), 50); }}
-                className="text-primary text-sm font-medium flex items-center gap-1 hover:underline"
+                className="text-primary text-sm font-medium flex items-center gap-1"
               >
                 <span className="material-symbols-outlined text-base">add_circle</span> {t.createLocation}
               </button>
