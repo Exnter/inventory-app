@@ -1,0 +1,31 @@
+version: '3.8'
+
+services:
+  inventory:
+    # 这里的 . 代表使用当前目录的 Dockerfile 构建
+    # 如果你后续推送到 Docker Hub，可以改为 image: yourname/inventory:latest
+    build: . 
+    image: inventory-app:latest
+    container_name: inventory-app
+    restart: unless-stopped
+    
+    # 端口映射: 宿主机端口:容器端口
+    # 你可以通过 http://NAS_IP:3001 访问
+    ports:
+      - "32104:3001"
+    
+    # 目录映射: 宿主机路径:容器路径
+    volumes:
+      # 将所有数据（数据库文件 + 上传的图片）都保存在这个映射出来的 data 目录中
+      # 在 NAS 上，./data 对应你实际存放数据的文件夹
+      - /mnt/user/appdata/inventory:/data
+    
+    environment:
+      # 权限设置 (在 NAS 的 SSH 中输入 id 命令查看你的 uid/gid)
+      # 通常 admin/root 是 0, 普通用户可能是 1000, 1024 等
+      - PUID=1000
+      - PGID=100
+      
+      # 二维码的基础链接地址
+      # 务必修改为你 NAS 的实际 IP 和端口
+      - QR_BASE_URL=http://172.20.20.202:32104
