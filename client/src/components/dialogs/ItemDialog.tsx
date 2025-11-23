@@ -262,7 +262,7 @@ export default function ItemDialog({ lang, open, onClose, onSave, initialData }:
                <div className="bg-gray-50 dark:bg-gray-800/50 p-4 rounded-lg border border-gray-200 dark:border-gray-700">
                  <div className="flex justify-between items-center mb-3">
                     <label className="block text-sm font-bold text-gray-700 dark:text-gray-300">{t.locationSelect}</label>
-                    <button onClick={() => { setShowQuickLoc(!showQuickLoc); setTimeout(() => document.getElementById('quickLocInput')?.focus(), 50); }} className="text-xs text-primary font-bold hover:underline flex items-center gap-1"><span className="material-symbols-outlined text-sm">add</span> {t.createLocation}</button>
+                    <button onClick={() => { setShowQuickLoc(!showQuickLoc); setTimeout(() => document.getElementById('quickLocInput')?.focus(), 50); }} className="text-xs text-primary font-bold flex items-center gap-1"><span className="material-symbols-outlined text-sm">add</span> {t.createLocation}</button>
                  </div>
                  {showQuickLoc && (
                      <div className="flex gap-2 mb-3 p-2 bg-white dark:bg-gray-700 rounded border border-primary/30 shadow-sm animate-in slide-in-from-top-2">
