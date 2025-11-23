@@ -73,7 +73,7 @@ Requirements: Node.js v18+, npm.
 
 1.  **Clone the repository**:
     ```bash
-    git clone https://github.com/yourusername/your-repo.git
+    git clone https://github.com/Exnter/inventory-app.git
     cd your-repo
     ```
 2.  **Install dependencies**:
@@ -160,7 +160,7 @@ This project is licensed under the **Creative Commons Attribution-NonCommercial 
 
 1.  **克隆仓库**:
     ```bash
-    git clone https://github.com/yourusername/your-repo.git
+    git clone https://github.com/Exnter/inventory-app.git
     cd your-repo
     ```
 2.  **安装依赖**:
