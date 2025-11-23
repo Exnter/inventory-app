@@ -212,35 +212,32 @@ export default function App() {
       />
       
       <div className="flex flex-1 overflow-hidden relative">
-        {/* Sidebar: Always visible on MD+, conditionally on mobile via absolute positioning */}
-        <div className={`
-            absolute inset-y-0 left-0 z-20 w-72 bg-white dark:bg-gray-900 shadow-xl transform transition-transform duration-300 ease-in-out
-            md:relative md:translate-x-0 md:shadow-none md:z-0
-            ${mobileMenuOpen ? 'translate-x-0' : '-translate-x-full'}
-        `}>
-             {/* Close button for mobile sidebar */}
-             <div className="md:hidden absolute top-2 right-2 p-2" onClick={() => setMobileMenuOpen(false)}>
-                <span className="material-symbols-outlined text-gray-500">close</span>
-             </div>
+        {currentView === 'inventory' && (
+            <div className={`
+                absolute inset-y-0 left-0 z-20 w-72 bg-white dark:bg-gray-900 shadow-xl transform transition-transform duration-300 ease-in-out
+                md:relative md:translate-x-0 md:shadow-none md:z-0
+                ${mobileMenuOpen ? 'translate-x-0' : '-translate-x-full'}
+            `}>
+                 {/* Close button for mobile sidebar */}
+                 <div className="md:hidden absolute top-2 right-2 p-2" onClick={() => setMobileMenuOpen(false)}>
+                    <span className="material-symbols-outlined text-gray-500">close</span>
+                 </div>
 
-             {currentView === 'inventory' ? (
-                <Sidebar 
+                 <Sidebar 
                     lang={lang} 
                     onChange={handleFilterChange}
                     refreshKey={refreshKey} 
                     activeLocationId={filters.locationId} 
                 />
-             ) : (
-                 <div className="p-4 text-sm text-gray-500">Sidebar disabled in this view</div>
-             )}
-        </div>
+            </div>
+        )}
 
-        {/* Mobile Backdrop */}
-        {mobileMenuOpen && (
+        {/* Mobile Backdrop (Only show if menu is open AND we are in inventory view) */}
+        {mobileMenuOpen && currentView === 'inventory' && (
             <div className="absolute inset-0 bg-black/50 z-10 md:hidden" onClick={() => setMobileMenuOpen(false)}></div>
         )}
         
-        <main className="flex-1 relative flex flex-col w-full">
+        <main className="flex-1 relative flex flex-col w-full min-w-0">
           {currentView !== 'inventory' && renderBackButton()}
 
           {currentView === 'inventory' && (
