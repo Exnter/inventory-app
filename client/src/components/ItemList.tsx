@@ -34,10 +34,7 @@ export default function ItemList({ lang, items, selectedIds, onToggleSelect, onS
   const allSelected = items.length > 0 && selectedIds.length === items.length;
   const [activeNoteId, setActiveNoteId] = useState<string | null>(null);
   const [previewImage, setPreviewImage] = useState<string | null>(null);
-
-  // 【新增】Tag 悬浮窗状态：存储坐标和标签数据
   const [tagTooltip, setTagTooltip] = useState<{ x: number, y: number, tags: Tag[] } | null>(null);
-
   const handleSelectAll = () => {
     if (allSelected) onSelectAll([]);
     else onSelectAll(items.map(i => i.id));
@@ -134,12 +131,10 @@ export default function ItemList({ lang, items, selectedIds, onToggleSelect, onS
                           <div className="text-sm text-gray-500 mt-0.5 font-normal">{item.quantity} {item.quantityUnit}</div>
                         </div>
                       </div>
-                    </td>
-                    <td className="px-3 py-4 text-gray-600 dark:text-gray-400 text-sm">
-                      {item.locationName ? <span className="bg-gray-100 dark:bg-gray-700 px-2 py-1 rounded text-xs font-medium">{item.locationName}</span> : <span className="text-red-400 text-xs italic">Unassigned</span>}
+                    </td>    
+                    <td className="px-3 py-4 text-gray-600 dark:text-gray-400 text-sm">{item.locationName ? (<span className="bg-gray-100 dark:bg-gray-700 px-2 py-0.5 rounded text-xs font-medium inline-block leading-6 break-words text-gray-700 dark:text-gray-300">{item.locationName}</span>) : (<span className="text-red-400 text-xs italic">Unassigned</span>)}
                     </td>
                     <td className="px-3 py-4 text-gray-600 dark:text-gray-400 text-sm font-mono">{item.purchasePrice ? `${item.purchasePriceCurrency || '$'}${item.purchasePrice}` : '-'}</td>
-                    
                     {/* Tags Column */}
                     <td className="px-3 py-4">
                       <div className="flex flex-wrap gap-1">
@@ -150,7 +145,6 @@ export default function ItemList({ lang, items, selectedIds, onToggleSelect, onS
                         ))}
                         {item.tags.length > 2 && (
                           <span 
-                             // 【核心修复】: 移除 CSS group-hover 逻辑，改为 JS 计算坐标
                              className="inline-flex items-center rounded-md bg-gray-50 dark:bg-gray-800 border border-gray-200 dark:border-gray-700 px-2 py-0.5 text-[11px] font-medium text-gray-600 dark:text-gray-300 cursor-help"
                              onMouseEnter={(e) => {
                                  const rect = e.currentTarget.getBoundingClientRect();
@@ -183,13 +177,12 @@ export default function ItemList({ lang, items, selectedIds, onToggleSelect, onS
           </div>
         )}
       </div>
-
       {previewImage && <ImagePreview src={previewImage} onClose={() => setPreviewImage(null)} />}
       {tagTooltip && createPortal(
           <div 
               className="fixed z-[9999] bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 shadow-xl rounded-lg p-2 w-48 pointer-events-none"
               style={{
-                  top: tagTooltip.y - 8, 
+                  top: tagTooltip.y - 8,
                   left: tagTooltip.x,
                   transform: 'translate(-50%, -100%)'
               }}
