@@ -197,29 +197,29 @@ export default function App() {
      </div>
   );
 
-  return (
+return (
     <div className="flex flex-col h-screen overflow-hidden bg-[#f6f7f8] dark:bg-[#111921]">
       <Header 
         lang={lang} setLang={setLang}
         onAdd={() => { setEditItem(null); setItemDialogOpen(true); }} 
         onPrint={() => setPrintDialogOpen(true)}
         onSearch={setSearch}
-        onManageWarehouses={() => { setCurrentView('locations'); setMobileMenuOpen(false); }}
-        onManageTags={() => { setCurrentView('tags'); setMobileMenuOpen(false); }}
-        searchInputRef={searchInputRef} 
+        onManageWarehouses={() => setCurrentView('locations')}
+        onManageTags={() => setCurrentView('tags')}
+        searchInputRef={searchInputRef}
         // Mobile Props
         onToggleMobileMenu={() => setMobileMenuOpen(!mobileMenuOpen)}
       />
       
       <div className="flex flex-1 overflow-hidden relative">
+        {/* Sidebar Wrapper */}
         {currentView === 'inventory' && (
             <div className={`
                 absolute inset-y-0 left-0 z-20 w-72 bg-white dark:bg-gray-900 shadow-xl transform transition-transform duration-300 ease-in-out
-                md:relative md:translate-x-0 md:shadow-none md:z-0
+                md:relative md:translate-x-0 md:shadow-none md:z-0 border-r border-gray-200 dark:border-gray-800
                 ${mobileMenuOpen ? 'translate-x-0' : '-translate-x-full'}
             `}>
-                 {/* Close button for mobile sidebar */}
-                 <div className="md:hidden absolute top-2 right-2 p-2" onClick={() => setMobileMenuOpen(false)}>
+                 <div className="md:hidden absolute top-2 right-2 p-2 cursor-pointer" onClick={() => setMobileMenuOpen(false)}>
                     <span className="material-symbols-outlined text-gray-500">close</span>
                  </div>
 
@@ -232,7 +232,6 @@ export default function App() {
             </div>
         )}
 
-        {/* Mobile Backdrop (Only show if menu is open AND we are in inventory view) */}
         {mobileMenuOpen && currentView === 'inventory' && (
             <div className="absolute inset-0 bg-black/50 z-10 md:hidden" onClick={() => setMobileMenuOpen(false)}></div>
         )}
@@ -242,7 +241,7 @@ export default function App() {
 
           {currentView === 'inventory' && (
             <>
-              <div className="flex-1 overflow-y-auto p-4 pb-24 md:p-6">
+              <div className="flex-1 overflow-y-auto p-4 pb-32 md:p-6 md:pb-24">
                 <div className="mb-2 text-sm text-gray-500">Total {totalItems} items</div>
                 <ItemList 
                   lang={lang}
@@ -259,7 +258,10 @@ export default function App() {
                   onSortChange={handleSortChange}
                 />
               </div>
+              
+              {/* UPDATED: Pass lang prop */}
               <BottomToolbar 
+                lang={lang}
                 selectedCount={selectedIds.length} 
                 onArchive={handleArchiveRequest}
                 onDelete={handleDeleteRequest}
