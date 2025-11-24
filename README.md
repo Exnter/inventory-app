@@ -16,6 +16,8 @@ This project was architected and the core code was generated with the assistance
 
 ### 📖 Introduction
 A modern, responsive, and locally-hosted inventory management system designed for personal use, home labs, or small businesses. It allows you to track items, manage locations hierarchically, print labels, and visualize your assets.
+<img width="243" height="150" alt="圖片" src="https://github.com/user-attachments/assets/4da631f6-caa7-4f4d-847c-eec74fdccde4" />
+
 
 ### ✨ Features
 
@@ -104,6 +106,8 @@ This project is licensed under the **Creative Commons Attribution-NonCommercial 
 
 ### 📖 简介
 这是一个现代化的、响应式的、可本地托管的个人库存管理系统。非常适合个人、家庭实验室（Home Lab）或小型工作室使用。它允许您追踪物品、管理层级化的位置、打印标签以及可视化您的资产。
+<img width="243" height="150" alt="圖片" src="https://github.com/user-attachments/assets/e4dde256-3dd3-4e9d-b92a-28345a17cbb4" />
+
 
 ### ✨ 功能特性
 
